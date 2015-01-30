@@ -1,0 +1,17 @@
+{
+    "name": "php-packages/container",
+    "description": "An IoC container for PHP: simple, fast, clean.",
+    "license": "MIT",
+    "keywords": ["dependency injection", "inversion of control", "IoC", "container"],
+    "authors": [
+        {
+            "name": "bound1ess",
+            "email": "bound1ess.dev@gmail.com",
+            "role": "developer"
+        }
+    ],
+
+    "require-dev": {
+        "phpspec/phpspec": "~2.0.0"
+    }
+}
