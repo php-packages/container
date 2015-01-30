@@ -13,5 +13,11 @@
 
     "require-dev": {
         "phpspec/phpspec": "2.1.*"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "PhpPackages\\": "src/PhpPackages/"
+        }
     }
 }

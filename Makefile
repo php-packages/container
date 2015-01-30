@@ -1,1 +1,1 @@
-tests: ; vendor/bin/phpspec run
+run-specs: ; vendor/bin/phpspec run
