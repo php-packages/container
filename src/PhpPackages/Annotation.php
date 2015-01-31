@@ -9,6 +9,17 @@ class Annotation
     protected $lines = [];
 
     /**
+     * Whether the array of lines we are working with contains the given flag.
+     *
+     * @param string $name
+     * @return boolean
+     */
+    public function hasFlag($name)
+    {
+        return in_array("@".$name, $this->lines);
+    }
+
+    /**
      * Parses the given DocBlock and assigns the produced array to a property.
      *
      * @param string $block
