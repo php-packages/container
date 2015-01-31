@@ -7,4 +7,18 @@ class AnnotationSpec extends \PhpSpec\ObjectBehavior
     {
         $this->shouldHaveType("PhpPackages\Annotation");
     }
+
+    public function it_parses_a_docblock_comment()
+    {
+        $this->parseBlock((new \ReflectionClass(new Dummy))->getDocComment())
+             ->shouldBe(["@param value", "@flag"]);
+    }
+}
+
+/**
+ * @param value
+ * @flag
+ */
+class Dummy
+{
 }
