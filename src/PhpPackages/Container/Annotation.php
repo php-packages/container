@@ -9,6 +9,15 @@ class Annotation
     protected $lines = [];
 
     /**
+     * @param string $block
+     * @return Annotation
+     */
+    public function __construct($block)
+    {
+        $this->setBlock($block);
+    }
+
+    /**
      * Returns a value associated with the given key, or null otherwise (if no such key).
      *
      * @param string $key
@@ -42,7 +51,7 @@ class Annotation
      * @param string $block
      * @return void
      */
-    public function setBlock($block)
+    protected function setBlock($block)
     {
         $this->lines = $this->parseBlock($block);
     }

@@ -7,7 +7,7 @@ class AnnotationSpec extends \PhpSpec\ObjectBehavior
     public function let()
     {
         $this->block = (new \ReflectionClass(new DocBlockDummy))->getDocComment();
-        $this->setBlock($this->block)->shouldBe(null);
+        $this->beConstructedWith($this->block);
     }
 
     public function it_is_initializable()
