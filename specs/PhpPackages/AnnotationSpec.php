@@ -2,6 +2,12 @@
 
 class AnnotationSpec extends \PhpSpec\ObjectBehavior
 {
+    protected $block;
+
+    public function let()
+    {
+        $this->block = (new \ReflectionClass(new Dummy))->getDocComment();
+    }
 
     public function it_is_initializable()
     {
@@ -10,8 +16,8 @@ class AnnotationSpec extends \PhpSpec\ObjectBehavior
 
     public function it_parses_a_docblock_comment()
     {
-        $this->parseBlock((new \ReflectionClass(new Dummy))->getDocComment())
-             ->shouldBe(["@param value", "@flag"]);
+        $this->setBlock($this->block)->shouldBe(null);
+        $this->getLines()->shouldBe(["@param value", "@flag"]);
     }
 }
 

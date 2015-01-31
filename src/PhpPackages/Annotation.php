@@ -4,12 +4,38 @@ class Annotation
 {
 
     /**
+     * @var array
+     */
+    protected $lines = [];
+
+    /**
+     * Parses the given DocBlock and assigns the produced array to a property.
+     *
+     * @param string $block
+     * @return void
+     */
+    public function setBlock($block)
+    {
+        $this->lines = $this->parseBlock($block);
+    }
+
+    /**
+     * Returns the array of lines we are working with.
+     *
+     * @return array
+     */
+    public function getLines()
+    {
+        return $this->lines;
+    }
+
+    /**
      * Parses a DocBlock comment into an array of lines.
      *
      * @param string $annotation
      * @return array
      */
-    public function parseBlock($annotation)
+    protected function parseBlock($annotation)
     {
         $lines = array_filter(array_map(function($line)
         {
