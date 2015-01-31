@@ -25,6 +25,12 @@ class AnnotationSpec extends \PhpSpec\ObjectBehavior
         $this->hasFlag("notAFlag")->shouldBe(false);
         $this->hasFlag("flag")->shouldBe(true);
     }
+
+    public function it_returns_a_value_associated_with_the_given_key_if_it_exists_or_null()
+    {
+        $this->getValue("nonexistentParam")->shouldBe(null);
+        $this->getValue("param")->shouldBe("value");
+    }
 }
 
 /**

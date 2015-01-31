@@ -9,6 +9,23 @@ class Annotation
     protected $lines = [];
 
     /**
+     * Returns a value associated with the given key, or null otherwise (if no such key).
+     *
+     * @param string $key
+     * @return string|null
+     */
+    public function getValue($key)
+    {
+        foreach ($this->lines as $line) {
+            if (strpos($line, "@".$key) === 0) {
+                return trim(str_replace("@".$key, "", $line));
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Whether the array of lines we are working with contains the given flag.
      *
      * @param string $name
