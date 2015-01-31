@@ -1,4 +1,4 @@
-<?php namespace PhpPackages;
+<?php namespace PhpPackages\Container;
 
 class Annotation
 {

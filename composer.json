@@ -17,7 +17,7 @@
 
     "autoload": {
         "psr-4": {
-            "PhpPackages\\": "src/PhpPackages/"
+            "PhpPackages\\Container\\": "src/PhpPackages/Container"
         }
     }
 }

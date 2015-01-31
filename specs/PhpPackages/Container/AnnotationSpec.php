@@ -1,4 +1,4 @@
-<?php namespace specs\PhpPackages;
+<?php namespace specs\PhpPackages\Container;
 
 class AnnotationSpec extends \PhpSpec\ObjectBehavior
 {
@@ -12,7 +12,7 @@ class AnnotationSpec extends \PhpSpec\ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType("PhpPackages\Annotation");
+        $this->shouldHaveType("PhpPackages\Container\Annotation");
     }
 
     public function it_parses_a_docblock_comment()
