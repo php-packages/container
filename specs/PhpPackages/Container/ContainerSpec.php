@@ -20,5 +20,13 @@ class ContainerSpec extends \PhpSpec\ObjectBehavior
 
         // Scenario #3: the class dependencies were passed as the second parameter.
         $this->make("TypeHintClass", [[],])->shouldHaveType("TypeHintClass");
+
+        // Scenario #4: a failed attempt to perform the automatic resolution:
+        // the default value was not specified for a primitive dependency.
+        $this->shouldThrow("PhpPackages\Container\Exceptions\ResolutionException")
+             ->duringMake("TypeHintClass");
+
+        // Scenario #5: inversed #4.
+        $this->make("ResolvableClass")->shouldHaveType("ResolvableClass");
     }
 }
