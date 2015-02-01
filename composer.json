@@ -20,5 +20,8 @@
         "psr-4": {
             "PhpPackages\\Container\\": "src/PhpPackages/Container"
         }
+    },
+    "autoload-dev": {
+        "classmap": ["stubs/"]
     }
 }

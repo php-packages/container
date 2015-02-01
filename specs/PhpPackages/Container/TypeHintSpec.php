@@ -7,7 +7,7 @@ class TypeHintSpec extends \PhpSpec\ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedWith(new ReflectionClass(new TypeHintDummy([])));
+        $this->beConstructedWith(new ReflectionClass(new \TypeHintClass([])));
     }
 
     public function it_is_initializable()
@@ -35,13 +35,5 @@ class TypeHintSpec extends \PhpSpec\ObjectBehavior
     {
         $this->beConstructedWith(new ReflectionClass(new stdClass));
         $this->read()->shouldBe([]);
-    }
-}
-
-class TypeHintDummy
-{
-
-    public function __construct(array $foo, stdClass $bar = null)
-    {
     }
 }

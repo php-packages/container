@@ -16,14 +16,6 @@ class ContainerSpec extends \PhpSpec\ObjectBehavior
 
         // Scenario #2: the passed class is not instantiable.
         $this->shouldThrow("PhpPackages\Container\Exceptions\ClassIsNotInstantiableException")
-             ->duringMake("specs\PhpPackages\Container\NotInstantiableClass");
-    }
-}
-
-abstract class NotInstantiableClass
-{
-
-    private function __construct()
-    {
+             ->duringMake("NotInstantiableClass");
     }
 }

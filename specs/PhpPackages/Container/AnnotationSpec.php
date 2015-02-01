@@ -6,7 +6,7 @@ class AnnotationSpec extends \PhpSpec\ObjectBehavior
 
     public function let()
     {
-        $this->block = (new \ReflectionClass(new DocBlockDummy))->getDocComment();
+        $this->block = (new \ReflectionClass(new \DocBlockClass))->getDocComment();
         $this->beConstructedWith($this->block);
     }
 
@@ -31,12 +31,4 @@ class AnnotationSpec extends \PhpSpec\ObjectBehavior
         $this->getValue("nonexistentParam")->shouldBe(null);
         $this->getValue("param")->shouldBe("value");
     }
-}
-
-/**
- * @param value
- * @flag
- */
-class DocBlockDummy
-{
 }
