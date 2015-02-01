@@ -31,7 +31,7 @@ class TypeHintSpec extends \PhpSpec\ObjectBehavior
         ]);
     }
 
-    public function it_smth()
+    public function it_returns_an_empty_array_if_the_class_has_no_constructor()
     {
         $this->beConstructedWith(new ReflectionClass(new stdClass));
         $this->read()->shouldBe([]);
