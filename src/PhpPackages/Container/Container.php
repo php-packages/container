@@ -9,12 +9,22 @@ class Container
      * @param string $class
      * @param array $dependencies
      * @throws Exceptions\ClassDoesNotExistException
+     * @throws Exceptions\ClassIsNotInstantiableException
      * @return mixed
      */
     public function make($class, array $dependencies = [])
     {
         if ( ! class_exists($class)) {
             throw new Exceptions\ClassDoesNotExistException($class);
+        }
+
+        $reflector = new \ReflectionClass($class);
+
+        $hasPublicConstructor =
+            is_null($reflector->getConstructor()) or $reflector->getConstructor()->isPublic();
+
+        if ($reflector->isAbstract() or ! $hasPublicConstructor) {
+            throw new Exceptions\ClassIsNotInstantiableException($class);
         }
     }
 }
