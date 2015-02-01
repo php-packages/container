@@ -20,11 +20,13 @@ class Container
 
         $reflector = new \ReflectionClass($class);
 
-        $hasPublicConstructor =
-            is_null($reflector->getConstructor()) or $reflector->getConstructor()->isPublic();
+        $isInstantiable =
+            $reflector->getConstructor()->isPublic() or is_null($reflector->getConstructor());
 
-        if ($reflector->isAbstract() or ! $hasPublicConstructor) {
+        if ($reflector->isAbstract() or ! $isInstantiable) {
             throw new Exceptions\ClassIsNotInstantiableException($class);
         }
+
+        return $reflector->newInstanceArgs($dependencies);
     }
 }

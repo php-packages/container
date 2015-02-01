@@ -12,10 +12,13 @@ class ContainerSpec extends \PhpSpec\ObjectBehavior
     {
         // Scenario #1: the passed class name was not registered.
         $this->shouldThrow("PhpPackages\Container\Exceptions\ClassDoesNotExistException")
-             ->duringMake("Class".uniqid());
+             ->duringMake(uniqid()."Class");
 
         // Scenario #2: the passed class is not instantiable.
         $this->shouldThrow("PhpPackages\Container\Exceptions\ClassIsNotInstantiableException")
              ->duringMake("NotInstantiableClass");
+
+        // Scenario #3: the class dependencies were passed as the second parameter.
+        $this->make("TypeHintClass", [[],])->shouldHaveType("TypeHintClass");
     }
 }
