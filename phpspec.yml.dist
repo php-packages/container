@@ -7,4 +7,13 @@ suites:
         spec_path: .
         spec_prefix: specs
 
+extensions:
+    - PhpSpec\Extension\CodeCoverageExtension
+
+code_coverage:
+    format:
+        - html
+    output:
+        html: coverage
+
 # vim: syntax=yaml
