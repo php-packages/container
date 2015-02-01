@@ -26,5 +26,33 @@ class TypeHint
      */
     public function read()
     {
+        if (is_null($constructor = $this->reflector->getConstructor())) {
+            return [];
+        }
+
+        $typeHints = [];
+
+        foreach ($constructor->getParameters() as $parameter) {
+            /**
+             * @var \ReflectionParameter $parameter
+             */
+
+            $typeHint = [
+                "isClass" => ! is_null($parameter->getClass()),
+                "hasDefaultValue" => $parameter->isDefaultValueAvailable(),
+            ];
+
+            if ($typeHint["isClass"]) {
+                $typeHint["value"] = $parameter->getClass()->getName();
+            }
+
+            if ($typeHint["hasDefaultValue"]) {
+                $typeHint["defaultValue"] = $parameter->getDefaultValue();
+            }
+
+            $typeHints[] = $typeHint;
+        }
+
+        return $typeHints;
     }
 }

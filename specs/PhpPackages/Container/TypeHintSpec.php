@@ -22,8 +22,8 @@ class TypeHintSpec extends \PhpSpec\ObjectBehavior
             ],
             [
                 "isClass"         => true,
-                "value"           => "stdClass",
                 "hasDefaultValue" => true,
+                "value"           => "stdClass",
                 "defaultValue"    => null,
             ],
         ]);
