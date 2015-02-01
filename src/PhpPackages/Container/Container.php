@@ -23,8 +23,8 @@ class Container
 
         $reflector = new ReflectionClass($class);
 
-        $isInstantiable = ! is_null($reflector->getConstructor()) and
-            $reflector->getConstructor()->isPublic();
+        $isInstantiable = is_null($reflector->getConstructor()) ?
+            true : $reflector->getConstructor()->isPublic();
 
         if ($reflector->isAbstract() or ! $isInstantiable) {
             throw new Exceptions\ClassIsNotInstantiableException($class);
@@ -59,7 +59,7 @@ class Container
 
                 $dependencies[] = $parameter["defaultValue"];
             } else {
-                $dependencies[] = new $parameter["value"];
+                $dependencies[] = $this->make($parameter["value"]);
             }
         }
 

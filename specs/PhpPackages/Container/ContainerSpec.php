@@ -28,5 +28,9 @@ class ContainerSpec extends \PhpSpec\ObjectBehavior
 
         // Scenario #5: inversed #4.
         $this->make("ResolvableClass")->shouldHaveType("ResolvableClass");
+
+        // Scenario #6: some class depends on another class that also has dependencies.
+        $this->make("DependingOnResolvableClass")
+             ->shouldHaveType("DependingOnResolvableClass");
     }
 }
