@@ -7,4 +7,11 @@ class ContainerSpec extends \PhpSpec\ObjectBehavior
     {
         $this->shouldHaveType("PhpPackages\Container\Container");
     }
+
+    public function it_resolves_dependencies()
+    {
+        // Scenario #1: the passed class name was not registered.
+        $this->shouldThrow("PhpPackages\Container\Exceptions\ClassDoesNotExistException")
+             ->duringMake("Class".uniqid());
+    }
 }
