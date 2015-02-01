@@ -33,4 +33,9 @@ class ContainerSpec extends \PhpSpec\ObjectBehavior
         $this->make("DependingOnResolvableClass")
              ->shouldHaveType("DependingOnResolvableClass");
     }
+
+    public function it_injects_instances_into_properties()
+    {
+        $this->make("PropertyDependencyClass")->shouldHaveType("PropertyDependencyClass");
+    }
 }

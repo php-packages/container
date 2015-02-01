@@ -56,7 +56,7 @@ $container->make("A", ["D"]); // => a new instance of A with all dependencies re
 
 - Injecting via type-hinting.
 - Injecting via annotations.
-- Manual dependencies injecting (or via a configuration array).
+- Manual dependencies injecting (via an array).
 
 ## Additional information
 

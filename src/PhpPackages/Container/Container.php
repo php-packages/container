@@ -63,6 +63,18 @@ class Container
             }
         }
 
-        return $reflector->newInstanceArgs($dependencies);
+        return $this->injectIntoProperties($reflector->newInstanceArgs($dependencies));
+    }
+
+    /**
+     * Looks for @shouldBeInjected flags in properties' annotations and injects @var values.
+     *
+     * @param object $instance
+     * @return object
+     */
+    protected function injectIntoProperties($instance)
+    {
+        // @todo
+        return $instance;
     }
 }
