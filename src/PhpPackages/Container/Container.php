@@ -52,8 +52,14 @@ class Container
         $dependencies = [];
 
         foreach ((new TypeHint($reflector))->read() as $parameter) {
-            if ( ! $parameter["isClass"] and ! $parameter["hasDefaultValue"]) {
-                return false;
+            if ( ! $parameter["isClass"]) {
+                if ( ! $parameter["hasDefaultValue"]) {
+                    return false;
+                }
+
+                $dependencies[] = $parameter["defaultValue"];
+            } else {
+                $dependencies[] = new $parameter["value"];
             }
         }
 
