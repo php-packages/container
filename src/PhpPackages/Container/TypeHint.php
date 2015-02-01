@@ -30,29 +30,29 @@ class TypeHint
             return [];
         }
 
-        $typeHints = [];
+        $parameters = [];
 
-        foreach ($constructor->getParameters() as $parameter) {
+        foreach ($constructor->getParameters() as $reflectionParameter) {
             /**
              * @var \ReflectionParameter $parameter
              */
 
-            $typeHint = [
-                "isClass" => ! is_null($parameter->getClass()),
-                "hasDefaultValue" => $parameter->isDefaultValueAvailable(),
+            $parameter = [
+                "isClass"         => ! is_null($reflectionParameter->getClass()),
+                "hasDefaultValue" => $reflectionParameter->isDefaultValueAvailable(),
             ];
 
-            if ($typeHint["isClass"]) {
-                $typeHint["value"] = $parameter->getClass()->getName();
+            if ($parameter["isClass"]) {
+                $parameter["value"] = $reflectionParameter->getClass()->getName();
             }
 
-            if ($typeHint["hasDefaultValue"]) {
-                $typeHint["defaultValue"] = $parameter->getDefaultValue();
+            if ($parameter["hasDefaultValue"]) {
+                $parameter["defaultValue"] = $reflectionParameter->getDefaultValue();
             }
 
-            $typeHints[] = $typeHint;
+            $parameters[] = $parameter;
         }
 
-        return $typeHints;
+        return $parameters;
     }
 }
