@@ -20,8 +20,8 @@ class Container
 
         $reflector = new \ReflectionClass($class);
 
-        $isInstantiable =
-            $reflector->getConstructor()->isPublic() or is_null($reflector->getConstructor());
+        $isInstantiable = ! is_null($reflector->getConstructor()) and
+            $reflector->getConstructor()->isPublic();
 
         if ($reflector->isAbstract() or ! $isInstantiable) {
             throw new Exceptions\ClassIsNotInstantiableException($class);
