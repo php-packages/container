@@ -1,0 +1,10 @@
+formatter.name: pretty
+
+suites:
+    container_suite:
+        namespace: PhpPackages\Container
+        src_path: src
+        spec_path: .
+        spec_prefix: specs
+
+# vim: syntax=yaml
