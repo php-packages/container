@@ -10,7 +10,7 @@ class DocBlock
 
     /**
      * @param \Reflector $reflector
-     * @return Annotation
+     * @return DocBlock
      */
     public function __construct(\Reflector $reflector)
     {
@@ -69,10 +69,10 @@ class DocBlock
     /**
      * Parses a DocBlock comment into an array of lines.
      *
-     * @param string $annotation
+     * @param string $block
      * @return array
      */
-    protected function parseBlock($annotation)
+    protected function parseBlock($block)
     {
         $lines = array_filter(array_map(function($line)
         {
@@ -83,7 +83,7 @@ class DocBlock
             }
 
             return trim(substr($line, 1));
-        }, explode(PHP_EOL, $annotation)));
+        }, explode(PHP_EOL, $block)));
 
         return array_values($lines);
     }
