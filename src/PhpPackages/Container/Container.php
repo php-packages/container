@@ -85,13 +85,13 @@ class Container
              * @var \ReflectionProperty $property
              */
 
-            $annotation = new Annotation($property->getDocComment());
+            $block = new DocBlock($property);
 
-            if ( ! $annotation->hasFlag("shouldBeInjected")) {
+            if ( ! $block->hasFlag("shouldBeInjected")) {
                 continue;
             }
 
-            if ( ! is_null($class = $annotation->getValue("var"))) {
+            if ( ! is_null($class = $block->getValue("var"))) {
                 $property->setAccessible(true);
                 $property->setValue($instance, $this->make($class));
             }

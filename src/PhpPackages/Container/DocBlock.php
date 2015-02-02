@@ -1,6 +1,6 @@
 <?php namespace PhpPackages\Container;
 
-class Annotation
+class DocBlock
 {
 
     /**
@@ -9,12 +9,12 @@ class Annotation
     protected $lines = [];
 
     /**
-     * @param string $block
+     * @param \Reflector $reflector
      * @return Annotation
      */
-    public function __construct($block)
+    public function __construct(\Reflector $reflector)
     {
-        $this->setBlock($block);
+        $this->setBlock($reflector->getDocComment());
     }
 
     /**

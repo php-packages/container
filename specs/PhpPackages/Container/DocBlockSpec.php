@@ -1,18 +1,16 @@
 <?php namespace specs\PhpPackages\Container;
 
-class AnnotationSpec extends \PhpSpec\ObjectBehavior
+class DocBlockSpec extends \PhpSpec\ObjectBehavior
 {
-    protected $block;
 
     public function let()
     {
-        $this->block = (new \ReflectionClass(new \DocBlockClass))->getDocComment();
-        $this->beConstructedWith($this->block);
+        $this->beConstructedWith(new \ReflectionClass(new \DocBlockClass));
     }
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType("PhpPackages\Container\Annotation");
+        $this->shouldHaveType("PhpPackages\Container\DocBlock");
     }
 
     public function it_parses_a_docblock_comment()
