@@ -8,7 +8,7 @@ class Container
     /**
      * Resolves the given class' dependencies.
      *
-     * @param string $class
+     * @param string|mixed $class
      * @param array $dependencies
      * @throws Exceptions\ClassDoesNotExistException
      * @throws Exceptions\ClassIsNotInstantiableException
@@ -17,6 +17,10 @@ class Container
      */
     public function make($class, array $dependencies = [])
     {
+        if ( ! is_string($class)) {
+            return $class;
+        }
+
         if ( ! class_exists($class)) {
             throw new Exceptions\ClassDoesNotExistException($class);
         }
@@ -31,7 +35,7 @@ class Container
         }
 
         if (count($dependencies) > 0) {
-            return $reflector->newInstanceArgs($dependencies);
+            return $reflector->newInstanceArgs(array_map([$this, "make"], $dependencies));
         }
 
         if ( ! $resolved = $this->attemptToResolve($reflector)) {

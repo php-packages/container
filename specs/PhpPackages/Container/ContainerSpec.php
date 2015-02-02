@@ -19,7 +19,7 @@ class ContainerSpec extends \PhpSpec\ObjectBehavior
              ->duringMake("NotInstantiableClass");
 
         // Scenario #3: the class dependencies were passed as the second parameter.
-        $this->make("TypeHintClass", [[],])->shouldHaveType("TypeHintClass");
+        $this->make("TypeHintClass", [[], "stdClass"])->shouldHaveType("TypeHintClass");
 
         // Scenario #4: a failed attempt to perform the automatic resolution:
         // the default value was not specified for a primitive dependency.
