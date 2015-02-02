@@ -74,7 +74,25 @@ class Container
      */
     protected function injectIntoProperties($instance)
     {
-        // @todo
+        $reflector = new ReflectionClass($instance);
+
+        foreach ($reflector->getProperties() as $property) {
+            /**
+             * @var \ReflectionProperty $property
+             */
+
+            $annotation = new Annotation($property->getDocComment());
+
+            if ( ! $annotation->hasFlag("shouldBeInjected")) {
+                continue;
+            }
+
+            if ( ! is_null($class = $annotation->getValue("var"))) {
+                $property->setAccessible(true);
+                $property->setValue($instance, $this->make($class));
+            }
+        }
+
         return $instance;
     }
 }

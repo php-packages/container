@@ -22,7 +22,9 @@ class PropertyDependencyClass
 
     public function __destruct()
     {
-        if ( ! $this->foo or ! $this->bar or $this->baz) {
+        if (( ! $this->foo instanceof DependingOnResolvableClass)
+            or ( ! $this->bar instanceof ResolvableClass)
+            or ($this->baz instanceof stdClass)) {
             throw new RuntimeException("The dependencies were NOT injected properly.");
         }
     }
