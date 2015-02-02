@@ -1,4 +1,4 @@
-## Container
+## Container [![Build Status](https://travis-ci.org/php-packages/container.svg?branch=master)](https://travis-ci.org/php-packages/container)
 
 An IoC container for PHP: simple, fast, clean.
 
