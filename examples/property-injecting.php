@@ -26,3 +26,5 @@ class Example
 $example = (new Container)->make("Example");
 
 var_dump(spl_object_hash($example->foo), $example->bar);
+
+var_dump(spl_object_hash((new Container)->inject(new Example)->foo));

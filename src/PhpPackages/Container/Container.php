@@ -67,7 +67,7 @@ class Container
             }
         }
 
-        return $this->injectIntoProperties($reflector->newInstanceArgs($dependencies));
+        return $this->inject($reflector->newInstanceArgs($dependencies));
     }
 
     /**
@@ -76,7 +76,7 @@ class Container
      * @param object $instance
      * @return object
      */
-    protected function injectIntoProperties($instance)
+    public function inject($instance)
     {
         $reflector = new ReflectionClass($instance);
 
