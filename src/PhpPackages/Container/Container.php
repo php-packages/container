@@ -17,8 +17,8 @@ class Container
      */
     public function make($class, array $dependencies = [])
     {
-        if ( ! is_string($class)) {
-            return $class;
+        if ($class instanceof Raw) {
+            return $class->getValue();
         }
 
         if ( ! class_exists($class)) {
