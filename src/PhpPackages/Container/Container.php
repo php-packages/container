@@ -21,6 +21,10 @@ class Container
             return $class->getValue();
         }
 
+        if ( ! is_string($class)) {
+            return $class;
+        }
+
         if ( ! class_exists($class)) {
             throw new Exceptions\ClassDoesNotExistException($class);
         }
