@@ -47,6 +47,17 @@ class B
 }
 
 $container->make("B");
+
+class C
+{
+
+    public function __construct(array $foo)
+    {
+        var_dump($foo); # => [1, 2, 3]
+    }
+}
+
+$container->make("C", [[1, 2, 3]]);
 ```
 
 ### object inject(object $instance)
