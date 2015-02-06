@@ -19,7 +19,8 @@
     "autoload": {
         "psr-4": {
             "PhpPackages\\Container\\": "src/PhpPackages/Container"
-        }
+        },
+        "files": ["src/PhpPackages/Container/functions.php"]
     },
     "autoload-dev": {
         "classmap": ["stubs/"]
