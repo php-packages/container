@@ -2,6 +2,7 @@
     "name": "php-packages/container",
     "description": "An IoC container for PHP: simple, fast, clean.",
     "license": "MIT",
+
     "keywords": ["dependency injection", "inversion of control", "IoC", "container"],
     "authors": [
         {
@@ -12,6 +13,7 @@
     ],
 
     "require-dev": {
+        "php": ">=5.4.0",
         "phpspec/phpspec": "2.1.*",
         "henrikbjorn/phpspec-code-coverage": "1.0.*"
     },
@@ -22,6 +24,7 @@
         },
         "files": ["src/PhpPackages/Container/functions.php"]
     },
+
     "autoload-dev": {
         "classmap": ["stubs/"]
     }
