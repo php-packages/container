@@ -1,13 +1,13 @@
 <?php namespace specs\PhpPackages\Container;
 
-use stdClass, ReflectionClass;
+use stdClass, ReflectionClass, TypeHintClass;
 
 class TypeHintSpec extends \PhpSpec\ObjectBehavior
 {
 
     public function let()
     {
-        $this->beConstructedWith(new ReflectionClass(new \TypeHintClass([])));
+        $this->beConstructedWith(new ReflectionClass(new TypeHintClass([])));
     }
 
     public function it_is_initializable()

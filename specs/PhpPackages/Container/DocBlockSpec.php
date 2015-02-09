@@ -1,11 +1,13 @@
 <?php namespace specs\PhpPackages\Container;
 
+use ReflectionClass, DocBlockClass;
+
 class DocBlockSpec extends \PhpSpec\ObjectBehavior
 {
 
     public function let()
     {
-        $this->beConstructedWith(new \ReflectionClass(new \DocBlockClass));
+        $this->beConstructedWith(new ReflectionClass(new DocBlockClass));
     }
 
     public function it_is_initializable()
