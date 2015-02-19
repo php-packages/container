@@ -49,4 +49,11 @@ class ContainerSpec extends \PhpSpec\ObjectBehavior
     {
         $this->make("PropertyDependencyClass")->shouldHaveType("PropertyDependencyClass");
     }
+
+    public function it_is_available_through_a_helper_method()
+    {
+        if (container() !== container()) {
+            throw new \LogicException("The test failed.");
+        }
+    }
 }
