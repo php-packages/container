@@ -6,6 +6,31 @@ class Container
 {
 
     /**
+     * The container bindings.
+     *
+     * @var array
+     */
+    protected $bindings = [];
+
+    /**
+     * Binds given value into the container.
+     *
+     * @param string $binding
+     * @param mixed $value
+     * @return void
+     */
+    public function bind($binding, $value)
+    {
+        $callback = function() use($value) {
+            return $this->make($value);
+        };
+
+        $callback->bindTo($this);
+
+        $this->bindings[$binding] = $callback;
+    }
+
+    /**
      * Resolves the given class' dependencies.
      *
      * @param string|mixed $class
@@ -23,6 +48,10 @@ class Container
 
         if ( ! is_string($class)) {
             return $class;
+        }
+
+        if (array_key_exists($class, $this->bindings)) {
+            return $this->bindings[$class]();
         }
 
         if ( ! class_exists($class)) {
@@ -88,7 +117,6 @@ class Container
             /**
              * @var \ReflectionProperty $property
              */
-
             $block = new DocBlock($property);
 
             if ( ! $block->hasFlag("shouldBeInjected")) {
