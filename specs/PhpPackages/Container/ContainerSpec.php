@@ -8,6 +8,13 @@ class ContainerSpec extends \PhpSpec\ObjectBehavior
         $this->shouldHaveType("PhpPackages\Container\Container");
     }
 
+    public function it_binds_a_value_into_the_container()
+    {
+        $this->bind("foo", "ResolvableClass");
+
+        $this->make("foo")->shouldHaveType("ResolvableClass");
+    }
+
     public function it_resolves_dependencies()
     {
         // Scenario #1: the passed class name was not registered.
