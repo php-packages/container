@@ -11,8 +11,12 @@ class ContainerSpec extends \PhpSpec\ObjectBehavior
     public function it_binds_a_value_into_the_container()
     {
         $this->bind("foo", "ResolvableClass");
+        $this->bind("bar", $bar = new \stdClass);
 
         $this->make("foo")->shouldHaveType("ResolvableClass");
+
+        $this->make("bar")->shouldBeEqualTo($bar);
+        $this->make("bar")->shouldBeEqualTo($bar); // The same instance is stored.
     }
 
     public function it_resolves_dependencies()

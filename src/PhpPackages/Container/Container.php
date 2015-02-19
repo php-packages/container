@@ -16,7 +16,7 @@ class Container
      * Binds given value into the container.
      *
      * @param string $binding
-     * @param mixed $value
+     * @param string|object $value
      * @return void
      */
     public function bind($binding, $value)
