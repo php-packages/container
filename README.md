@@ -4,15 +4,15 @@ An IoC container for PHP: simple, fast, clean.
 
 ### Features
 
-- Injecting via type-hinting.
-- Injecting via annotations.
-- Manual dependencies injecting (via an array).
+- injecting via type-hinting
+- injecting via property annotations
+- manual dependencies injecting via an array
 
 ## Navigation
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Testing](#testing)
+- [Development](#development)
 - [Additional information](#additional-information)
 
 ## Installation
@@ -22,10 +22,6 @@ composer require php-packages/container
 ```
 
 ## Usage
-
-```php
-$container = new \PhpPackages\Container\Container;
-```
 
 ### mixed make(string|mixed $class, array $dependencies = [])
 
@@ -42,6 +38,7 @@ class B
 
     public function __construct(array $foo = [], A $bar)
     {
+        var_dump($foo); # => []
         get_class($bar); # => "A"
     }
 }
@@ -53,11 +50,11 @@ class C
 
     public function __construct(array $foo)
     {
-        var_dump($foo); # => [1, 2, 3]
+        var_dump($foo); # => [1, 2, "C"]
     }
 }
 
-$container->make("C", [[1, 2, 3]]);
+$container->make("C", [[1, 2, raw("C")]]);
 ```
 
 ### object inject(object $instance)
@@ -82,12 +79,11 @@ class A
 get_class($container->inject(new A)->b); # => "C"
 ```
 
-## Testing
+## Development
 
 ```shell
-git clone https://github.com/php-packages/container.git; cd container
-composer install --dev # or "composer update"
-make run-specs boot-server # visit http://localhost:8000
+make run-tests
+make coverage-report coverage-report-server
 ```
 
 ## Additional information
