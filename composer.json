@@ -22,7 +22,7 @@
         "psr-4": {
             "PhpPackages\\Container\\": "src/PhpPackages/Container"
         },
-        "files": ["src/PhpPackages/Container/functions.php"]
+        "files": ["src/helpers.php"]
     },
 
     "autoload-dev": {
