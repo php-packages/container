@@ -30,8 +30,8 @@ class A
 {
 }
 
-get_class($container->make("A")); # => "A"
-get_class($container->make(new A)); # => "A"
+get_class(container()->make("A")); # => "A"
+get_class(container()->make(new A)); # => "A"
 
 class B
 {
@@ -43,7 +43,7 @@ class B
     }
 }
 
-$container->make("B");
+container()->make("B");
 
 class C
 {
@@ -54,7 +54,7 @@ class C
     }
 }
 
-$container->make("C", [[1, 2, raw("C")]]);
+container()->make("C", [[1, 2, raw("C")]]);
 ```
 
 ### object inject(object $instance)
@@ -76,7 +76,17 @@ class A
     public $b;
 }
 
-get_class($container->inject(new A)->b); # => "C"
+get_class(container()->inject(new A)->b); # => "C"
+```
+
+### void bind(string $binding, string|object $value)
+
+```php
+container()->bind("foo", "stdClass");
+container()->bind("bar", $bar = new stdClass);
+
+var_dump(container()->make("foo")); # => an instance of stdClass
+var_dump(container()->make("bar") === container()->make("bar")); # => true
 ```
 
 ## Development
